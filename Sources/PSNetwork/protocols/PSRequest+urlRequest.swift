@@ -1,7 +1,7 @@
 import Foundation
 
 @available(iOS 13, macOS 10.15, *)
-extension PSRequest {
+public extension PSRequest {
     func urlRequest() throws -> URLRequest {
         guard let endpoint = endpoint else {
             throw PSNetwork.Error.urlRequest
