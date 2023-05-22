@@ -4,7 +4,7 @@ import Foundation
 
 @available(iOS 13, *)
 final class PSNetworkMockableTests: XCTestCase {
-    var networkExchange: PSNetwork.Mock.NetworkExchange<MyDataFile.T>?
+    var networkExchange: PSNetwork.Mock.NetworkExchange<MyDataFile.ReturnType>?
 
     override func tearDown() {
         networkExchange = nil
@@ -29,7 +29,7 @@ final class PSNetworkMockableTests: XCTestCase {
             header: [],
             dataFile: MyDataFile("other.json")
         )
-        
+
         XCTAssertEqual(networkExchange?.response?.statusCode, .code200)
         XCTAssertEqual(networkExchange?.response?.data?.name, "Tiago Ferreira")
     }
@@ -41,7 +41,7 @@ struct Other: Codable, Hashable {
 }
 
 struct MyDataFile: DataFile {
-    typealias T = Other
+    typealias ReturnType = Other
 
     let rawValue: String
     let bundle: Bundle = .module

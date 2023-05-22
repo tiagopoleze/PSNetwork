@@ -18,7 +18,10 @@ public extension PSNetwork.Mock {
             }
 
             if let error = foundedRequest?.error {
-                client?.urlProtocol(self, didFailWithError: error.urlError ?? NSError(domain: "MockURLProtocol", code: 0))
+                client?.urlProtocol(
+                    self,
+                    didFailWithError: error.urlError ?? NSError(domain: "MockURLProtocol", code: 0)
+                )
                 return
             }
 

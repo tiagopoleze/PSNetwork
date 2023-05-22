@@ -54,7 +54,7 @@ final class PSNetworkTests: XCTestCase {
 struct RegresModel: Codable, Hashable {
     let data: RegresModel.Data
     let support: RegresModel.Support
-    
+
     struct Data: Codable, Hashable {
         let id: Int
         let email: String
