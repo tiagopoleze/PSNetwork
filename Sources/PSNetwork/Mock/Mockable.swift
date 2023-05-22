@@ -12,6 +12,7 @@ public protocol Mockable {
         statusCode: PSNetwork.StatusCode,
         httpVersion: PSNetwork.HTTPVersion,
         header: [PSNetwork.Header],
-        dataFile: DFile
+        dataFile: DFile,
+        error: PSNetwork.Error?
     ) -> PSNetwork.Mock.NetworkExchange<DFile.ReturnType> where DFile.RawValue == String
 }

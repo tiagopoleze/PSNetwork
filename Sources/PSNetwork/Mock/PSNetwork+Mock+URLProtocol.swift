@@ -1,7 +1,7 @@
 import Foundation
 
 @available(iOS 13, macOS 10.15, *)
-public extension PSNetwork.Mock {
+extension PSNetwork.Mock {
     final class URLProtocol: Foundation.URLProtocol {
         static var mockRequests: Set<PSNetwork.Mock.NetworkExchange<Data>> = []
         static var delay = 0
@@ -26,7 +26,7 @@ public extension PSNetwork.Mock {
             }
 
             guard let mockExchange = foundedRequest else {
-                client?.urlProtocol(self, didFailWithError: PSNetwork.Error.routeNotFound)
+                client?.urlProtocol(self, didFailWithError: PSNetwork.Error.notFound)
                 return
             }
 

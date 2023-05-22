@@ -5,9 +5,10 @@ public extension Mockable {
     static func mockNetworkExchange<DFile: DataFile>(
         request: URLRequest,
         statusCode: PSNetwork.StatusCode,
-        httpVersion: PSNetwork.HTTPVersion,
-        header: [PSNetwork.Header],
-        dataFile: DFile
+        httpVersion: PSNetwork.HTTPVersion = .onePointOne,
+        header: [PSNetwork.Header] = [],
+        dataFile: DFile,
+        error: PSNetwork.Error? = nil
     ) -> PSNetwork.Mock
         .NetworkExchange<DFile.ReturnType> where DFile.RawValue == String {
         guard let encodable = try? dataFile
@@ -19,7 +20,7 @@ public extension Mockable {
             return PSNetwork.Mock.NetworkExchange(
                 urlRequest: request,
                 response: PSNetwork.Mock.ServerResponse(
-                    statusCode: .code404
+                    statusCode: .notFound
                 )
             )
         }
@@ -31,7 +32,8 @@ public extension Mockable {
                 httpVersion: httpVersion,
                 data: encodable,
                 headers: header
-            )
+            ),
+            error: error
         )
     }
 }

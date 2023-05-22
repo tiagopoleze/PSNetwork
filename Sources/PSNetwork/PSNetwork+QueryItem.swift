@@ -14,6 +14,6 @@ public extension PSNetwork {
 }
 
 @available(iOS 13, macOS 10.15, *)
-public extension Array where Element == PSNetwork.QueryItem {
+internal extension Array where Element == PSNetwork.QueryItem {
     var urlQueryItems: [URLQueryItem] { map { .init(name: $0.name, value: $0.value) } }
 }

@@ -19,7 +19,7 @@ public extension PSNetwork.Mock {
             )
         }
 
-        init(
+        public init(
             urlRequest: URLRequest,
             response: ServerResponse<T>? = nil,
             error: PSNetwork.Error? = nil

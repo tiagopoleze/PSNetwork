@@ -9,7 +9,7 @@ public extension PSNetwork {
         case patch(body: Encodable)
         case delete
 
-        var stringValue: String {
+        internal var stringValue: String {
             switch self {
             case .get:
                 return "GET"
@@ -24,7 +24,7 @@ public extension PSNetwork {
             }
         }
 
-        func body(dataEncoder: DataEncoder) throws -> Data? {
+        internal func body(dataEncoder: DataEncoder) throws -> Data? {
             switch self {
             case .post(let body):
                 return try dataEncoder.encode(body)

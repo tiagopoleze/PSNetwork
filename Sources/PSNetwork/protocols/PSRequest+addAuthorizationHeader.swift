@@ -1,7 +1,7 @@
 import Foundation
 
 @available(iOS 13, macOS 10.15, *)
-public extension PSRequest {
+extension PSRequest {
     func addAuthorizationHeader(to request: inout URLRequest) {
         switch authorizationType.header {
         case nil:

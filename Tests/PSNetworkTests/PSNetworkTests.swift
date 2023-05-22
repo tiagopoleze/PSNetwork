@@ -17,7 +17,7 @@ final class PSNetworkTests: XCTestCase {
         let networkExchange = PSNetwork.Mock.NetworkExchange(
             urlRequest: URLRequest(url: URL(string: "https://example.com")!),
             response: PSNetwork.Mock.ServerResponse(
-                statusCode: .code200,
+                statusCode: .ok,
                 httpVersion: .onePointOne,
                 data: "{\"text\": \"Some data\"}".data(using: .utf8),
                 headers: []

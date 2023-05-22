@@ -15,22 +15,26 @@ public extension PSNetwork {
         case failedToDecode(Data)
         case failedToEncode
         case notConnectedToInternet
-        case routeNotFound
         case hostNotFound
         case noURLError
+        case urlRequest
 
-        var urlError: URLError? {
+        internal var urlError: URLError? {
             switch self {
+            case .forbidden:
+                return URLError(.clientCertificateRejected)
+            case .notFound:
+                return URLError(.resourceUnavailable)
             case .notConnectedToInternet:
                 return URLError(.notConnectedToInternet)
             case .requestTimeout:
                 return URLError(.timedOut)
-            case .routeNotFound:
-                return URLError(.resourceUnavailable)
             case .hostNotFound:
                 return URLError(.cannotFindHost)
             case let .urlError(error):
                 return error
+            case .serverResponseNotValid:
+                return URLError.init(.badServerResponse)
             default:
                 return nil
             }

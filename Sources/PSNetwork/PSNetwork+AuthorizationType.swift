@@ -5,7 +5,7 @@ public extension PSNetwork {
         case header(PSNetwork.Header)
         case bearer(String)
 
-        var header: PSNetwork.Header? {
+        internal var header: PSNetwork.Header? {
             switch self {
             case .none:
                 return nil

@@ -2,7 +2,7 @@ import Foundation
 import Network
 
 @available(iOS 13.0, macOS 10.15, *)
-public extension PSNetwork {
+extension PSNetwork {
     class NetworkMonitor: ObservableObject {
         private let monitor = NWPathMonitor()
         private let queue = DispatchQueue(label: "Monitor")
@@ -12,7 +12,7 @@ public extension PSNetwork {
         var isConstrained = false
         var connectionType = NWInterface.InterfaceType.other
 
-        public init() {
+        init() {
             monitor.pathUpdateHandler = { path in
                 self.isActive = path.status == .satisfied
                 self.isExpensive = path.isExpensive

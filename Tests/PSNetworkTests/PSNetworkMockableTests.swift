@@ -13,24 +13,24 @@ final class PSNetworkMockableTests: XCTestCase {
     func testExample() throws {
         networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
-            statusCode: .code404,
+            statusCode: .notFound,
             httpVersion: .onePointOne,
             header: [],
             dataFile: MyDataFile("test")
         )
-        XCTAssertEqual(networkExchange?.response?.statusCode, .code404)
+        XCTAssertEqual(networkExchange?.response?.statusCode, .notFound)
     }
 
     func testOther() throws {
         networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
-            statusCode: .code200,
+            statusCode: .ok,
             httpVersion: .onePointOne,
             header: [],
             dataFile: MyDataFile("other.json")
         )
 
-        XCTAssertEqual(networkExchange?.response?.statusCode, .code200)
+        XCTAssertEqual(networkExchange?.response?.statusCode, .ok)
         XCTAssertEqual(networkExchange?.response?.data?.name, "Tiago Ferreira")
     }
 }

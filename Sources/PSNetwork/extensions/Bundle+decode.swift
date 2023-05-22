@@ -1,6 +1,6 @@
 import Foundation
 
-public extension Bundle {
+extension Bundle {
     func decode<T: Decodable>(
         _ type: T.Type,
         from file: String,
@@ -40,7 +40,7 @@ public extension Bundle {
     }
 }
 
-public enum BundleDecodeError: Error {
+enum BundleDecodeError: Error {
     case noValidURL(String)
     case noContentTo(URL)
 }
