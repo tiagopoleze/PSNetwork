@@ -1,5 +1,7 @@
 # PSNetwork
 
+[![Swift](https://github.com/tiagopoleze/PSNetwork/actions/workflows/swift.yml/badge.svg)](https://github.com/tiagopoleze/PSNetwork/actions/workflows/swift.yml)
+
 This is a package to help you to create requests.
 
 ## How to use it
