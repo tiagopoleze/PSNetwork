@@ -43,6 +43,7 @@ final class PSNetworkTests: XCTestCase {
 struct RegresModel: Codable, Hashable {
     let data: RegresModel.Data
     let support: RegresModel.Support
+    
     struct Data: Codable, Hashable {
         let id: Int
         let email: String
@@ -59,14 +60,8 @@ struct RegresModel: Codable, Hashable {
 struct RegresRequest: PSRequest {
     typealias ResponseModel = RegresModel
     var authorizationType: PSNetwork.AuthorizationType = .none
-    var method: PSNetwork.Method = .get
-    var scheme: PSNetwork.Scheme = .https
     var host: String = "reqres.in"
-    var port: Int? = nil
     var path: [String] = ["api", "users", "2"]
-    var headers: [PSNetwork.Header] = []
-    var queryItems: [PSNetwork.QueryItem] = []
-    var timeout: TimeInterval = 60
 }
 
 struct DemoResponse: Codable, Hashable {
@@ -80,12 +75,5 @@ struct DemoResponse: Codable, Hashable {
 struct DemoGetRequest: PSRequest {
     typealias ResponseModel = DemoResponse
     var authorizationType: PSNetwork.AuthorizationType = .none
-    var method: PSNetwork.Method = .get
-    var scheme: PSNetwork.Scheme = .https
     var host: String = "example.com"
-    var port: Int? = nil
-    var path: [String] = []
-    var headers: [PSNetwork.Header] = []
-    var queryItems: [PSNetwork.QueryItem] = []
-    var timeout: TimeInterval = 20
 }

@@ -2,6 +2,5 @@
 public extension PSNetwork {
     struct Mock {
         static var Manager: NetworkManager = .init(using: .mock)
-        let Error: PSNetwork.Error
     }
 }

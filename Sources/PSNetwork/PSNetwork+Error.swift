@@ -29,6 +29,8 @@ public extension PSNetwork {
                 return URLError(.resourceUnavailable)
             case .hostNotFound:
                 return URLError(.cannotFindHost)
+            case let .urlError(error):
+                return error
             default:
                 return nil
             }

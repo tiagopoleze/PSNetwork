@@ -6,6 +6,7 @@ public extension PSRequest {
         var request = URLRequest(url: endpoint)
         request.httpMethod = method.stringValue
         request.timeoutInterval = timeout
+        request.cachePolicy = cachePolicy
         request.allHTTPHeaderFields = headers.httpHeadersFields
         addAuthorizationHeader(to: &request)
         do {
