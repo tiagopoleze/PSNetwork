@@ -1,13 +1,17 @@
 import Foundation
 
+public protocol DataFile: RawRepresentable {
+    associatedtype T: Decodable
+    var bundle: Bundle { get }
+}
+
 @available(iOS 13, macOS 10.15, *)
 public protocol Mockable {
-    static func mockNetworkExchange<R: RawRepresentable>(
+    static func mockNetworkExchange<R: DataFile>(
         request: URLRequest,
         statusCode: PSNetwork.StatusCode,
         httpVersion: PSNetwork.HTTPVersion,
-        header: [String: String],
-        bundle: Bundle,
-        dataFile: R?
-    ) -> PSNetwork.Mock.NetworkExchange where R.RawValue == String
+        header: [PSNetwork.Header],
+        dataFile: R
+    ) -> PSNetwork.Mock.NetworkExchange<R.T> where R.RawValue == String
 }

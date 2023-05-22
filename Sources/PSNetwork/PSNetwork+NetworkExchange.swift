@@ -2,9 +2,9 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork.Mock {
-    struct NetworkExchange: Hashable {
+    struct NetworkExchange<T: Hashable>: Hashable {
         let urlRequest: URLRequest
-        let response: ServerResponse?
+        let response: ServerResponse<T>?
         let error: PSNetwork.Error?
         var urlResponse: HTTPURLResponse? {
             guard let response = response else {
@@ -15,13 +15,13 @@ public extension PSNetwork.Mock {
                 url: urlRequest.url!,
                 statusCode: response.statusCode.rawValue,
                 httpVersion: response.httpVersion.rawValue,
-                headerFields: response.headers
+                headerFields: response.headers.httpHeadersFields
             )
         }
 
         init(
             urlRequest: URLRequest,
-            response: ServerResponse? = nil,
+            response: ServerResponse<T>? = nil,
             error: PSNetwork.Error? = nil
         ) {
             self.urlRequest = urlRequest

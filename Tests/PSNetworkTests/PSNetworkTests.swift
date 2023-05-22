@@ -9,7 +9,7 @@ final class PSNetworkTests: XCTestCase {
                 statusCode: .code200,
                 httpVersion: .onePointOne,
                 data: "{\"text\": \"Some data\"}".data(using: .utf8),
-                headers: [:]
+                headers: []
             ),
             error: nil)
 

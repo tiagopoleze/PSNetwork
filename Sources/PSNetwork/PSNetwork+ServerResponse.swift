@@ -2,17 +2,17 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork.Mock {
-    struct ServerResponse: Hashable {
+    struct ServerResponse<T: Hashable>: Hashable {
         let statusCode: PSNetwork.StatusCode
         let httpVersion: PSNetwork.HTTPVersion
-        let data: Data?
-        let headers: [String: String]
+        let data: T?
+        let headers: [PSNetwork.Header]
 
         public init(
             statusCode: PSNetwork.StatusCode,
             httpVersion: PSNetwork.HTTPVersion = .onePointOne,
-            data: Data? = nil,
-            headers: [String : String] = [:]
+            data: T? = nil,
+            headers: [PSNetwork.Header] = []
         ) {
             self.statusCode = statusCode
             self.httpVersion = httpVersion

@@ -2,7 +2,7 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork {
-    struct Header {
+    struct Header: Hashable {
         let key: String
         let value: String
 

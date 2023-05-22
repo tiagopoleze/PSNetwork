@@ -4,14 +4,12 @@ import Foundation
 
 final class PSNetworkMockableTests: XCTestCase {
     func testExample() throws {
-        let bundle = Bundle()
         let networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
             statusCode: .code404,
             httpVersion: .onePointOne,
-            header: [:],
-            bundle: bundle,
-            dataFile: MyDataFile(rawValue: "test")
+            header: [],
+            dataFile: MyDataFile("test")
         )
         XCTAssertEqual(networkExchange.response?.statusCode, .code404)
     }
@@ -21,22 +19,30 @@ final class PSNetworkMockableTests: XCTestCase {
             request: .init(url: URL(string: "https://example.com")!),
             statusCode: .code200,
             httpVersion: .onePointOne,
-            header: [:],
-            bundle: .module,
-            dataFile: MyDataFile(rawValue: "other.json")
+            header: [],
+            dataFile: MyDataFile("other.json")
         )
         
         XCTAssertEqual(networkExchange.response?.statusCode, .code200)
+        XCTAssertEqual(networkExchange.response?.data?.name, "Tiago Ferreira")
     }
 }
 
 struct MyMockable: Mockable {}
-struct Other: Codable {
+struct Other: Codable, Hashable {
     let name: String
 }
 
-struct MyDataFile: RawRepresentable {
-    var rawValue: String
+struct MyDataFile: DataFile {
+    typealias T = Other
+
+    let rawValue: String
+    let bundle: Bundle = .module
+
+    init(_ rawValue: String) {
+        self.rawValue = rawValue
+    }
+
     init?(rawValue: String) {
         self.rawValue = rawValue
     }

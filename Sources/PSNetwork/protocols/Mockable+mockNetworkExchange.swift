@@ -2,36 +2,18 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension Mockable {
-    static func mockNetworkExchange<R: RawRepresentable>(
+    static func mockNetworkExchange<R: DataFile>(
         request: URLRequest,
         statusCode: PSNetwork.StatusCode,
         httpVersion: PSNetwork.HTTPVersion,
-        header: [String: String],
-        bundle: Bundle,
-        dataFile: R?
-    ) -> PSNetwork.Mock.NetworkExchange where R.RawValue == String {
-        guard let fileName = dataFile?.rawValue else {
-            return PSNetwork.Mock.NetworkExchange(
-                urlRequest: request,
-                response: PSNetwork.Mock.ServerResponse(
-                    statusCode: .code401
-                )
-            )
-        }
-
-        guard let url = bundle.url(forResource: fileName, withExtension: nil) else {
+        header: [PSNetwork.Header],
+        dataFile: R
+    ) -> PSNetwork.Mock.NetworkExchange<R.T> where R.RawValue == String {
+        guard let encodable = try? dataFile.bundle.decode(R.T.self, from: dataFile.rawValue) else {
             return PSNetwork.Mock.NetworkExchange(
                 urlRequest: request,
                 response: PSNetwork.Mock.ServerResponse(
                     statusCode: .code404
-                )
-            )
-        }
-        guard let data = try? Data(contentsOf: url) else {
-            return PSNetwork.Mock.NetworkExchange(
-                urlRequest: request,
-                response: PSNetwork.Mock.ServerResponse(
-                    statusCode: .code403
                 )
             )
         }
@@ -41,7 +23,7 @@ public extension Mockable {
             response: PSNetwork.Mock.ServerResponse(
                 statusCode: statusCode,
                 httpVersion: httpVersion,
-                data: data,
+                data: encodable,
                 headers: header
             )
         )

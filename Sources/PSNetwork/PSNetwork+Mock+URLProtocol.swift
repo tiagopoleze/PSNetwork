@@ -3,7 +3,7 @@ import Foundation
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork.Mock {
     final class URLProtocol: Foundation.URLProtocol {
-        static var mockRequests: Set<PSNetwork.Mock.NetworkExchange> = []
+        static var mockRequests: Set<PSNetwork.Mock.NetworkExchange<Data>> = []
         static var delay = 0
 
         public override class func canInit(with request: URLRequest) -> Bool { true }
