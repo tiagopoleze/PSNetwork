@@ -1,3 +1,43 @@
 # PSNetwork
 
-A description of this package.
+This is a package to help you to create requests.
+
+## How to use it
+
+Conforme a Model to `Codable` and `Hashable`
+```Swift
+struct RegresModel: Codable, Hashable {
+    let data: RegresModel.Data
+    let support: RegresModel.Support
+
+    struct Data: Codable, Hashable {
+        let id: Int
+        let email: String
+        let firstName: String
+        let lastName: String
+        let avatar: String
+    }
+    struct Support: Codable, Hashable {
+        let url: String
+        let text: String
+    }
+}
+```
+
+Then, create a struct to deal with the request:
+```Swift
+struct RegresRequest: PSRequest {
+    typealias ResponseModel = RegresModel
+    var authorizationType: PSNetwork.AuthorizationType = .none
+    var host: String = "reqres.in"
+    var path: [String] = ["api", "users", "2"]
+}
+```
+
+The call will be:
+```Swift
+let manager = PSNetwork.NetworkManager()
+let response = try await manager.request(RegresRequest())
+```
+
+This response will be a `RegresModel` type.
