@@ -1,7 +1,18 @@
 import XCTest
 @testable import PSNetwork
 
+@available(iOS 13, *)
 final class PSNetworkTests: XCTestCase {
+    var manager: PSNetwork.NetworkManager?
+
+    override func setUp() {
+        manager = .init()
+    }
+
+    override func tearDown() {
+        manager = nil
+    }
+
     func testExample() async throws {
         let networkExchange = PSNetwork.Mock.NetworkExchange(
             urlRequest: URLRequest(url: URL(string: "https://example.com")!),
@@ -15,15 +26,14 @@ final class PSNetworkTests: XCTestCase {
 
         PSNetwork.Mock.URLProtocol.mockRequests.insert(networkExchange)
         let expectedResponse = DemoResponse("Some data")
-        
-        let networkManager = PSNetwork.Mock.Manager
-        let actualResponse = try await networkManager.request(DemoGetRequest())
+
+        manager = PSNetwork.Mock.Manager
+        let actualResponse = try await manager?.request(DemoGetRequest())
         XCTAssertEqual(actualResponse, expectedResponse)
     }
 
     func testReal() async throws {
-        let manager = PSNetwork.NetworkManager(using: .shared)
-        let response = try await manager.request(RegresRequest())
+        let response = try await manager?.request(RegresRequest())
         let expectedResponse = RegresModel(
             data: RegresModel.Data(
                 id: 2,
@@ -36,6 +46,7 @@ final class PSNetworkTests: XCTestCase {
                 text: "To keep ReqRes free, contributions towards server costs are appreciated!"
             )
         )
+
         XCTAssertEqual(response, expectedResponse)
     }
 }
@@ -57,6 +68,7 @@ struct RegresModel: Codable, Hashable {
     }
 }
 
+@available(iOS 13, *)
 struct RegresRequest: PSRequest {
     typealias ResponseModel = RegresModel
     var authorizationType: PSNetwork.AuthorizationType = .none
@@ -72,8 +84,10 @@ struct DemoResponse: Codable, Hashable {
     }
 }
 
+@available(iOS 13, *)
 struct DemoGetRequest: PSRequest {
     typealias ResponseModel = DemoResponse
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "example.com"
+    var timeout: TimeInterval = 0
 }

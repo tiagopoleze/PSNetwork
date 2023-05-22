@@ -5,7 +5,7 @@ public extension URLSession {
     static var mock: URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.protocolClasses = [PSNetwork.Mock.URLProtocol.self]
-        PSNetwork.Mock.URLProtocol.delay = 2
+        PSNetwork.Mock.URLProtocol.delay = 0
         configuration.urlCache = nil
         configuration.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         return Foundation.URLSession(configuration: configuration)

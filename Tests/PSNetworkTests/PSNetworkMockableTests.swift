@@ -2,20 +2,27 @@ import XCTest
 import Foundation
 @testable import PSNetwork
 
+@available(iOS 13, *)
 final class PSNetworkMockableTests: XCTestCase {
+    var networkExchange: PSNetwork.Mock.NetworkExchange<MyDataFile.T>?
+
+    override func tearDown() {
+        networkExchange = nil
+    }
+
     func testExample() throws {
-        let networkExchange = MyMockable.mockNetworkExchange(
+        networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
             statusCode: .code404,
             httpVersion: .onePointOne,
             header: [],
             dataFile: MyDataFile("test")
         )
-        XCTAssertEqual(networkExchange.response?.statusCode, .code404)
+        XCTAssertEqual(networkExchange?.response?.statusCode, .code404)
     }
 
     func testOther() throws {
-        let networkExchange = MyMockable.mockNetworkExchange(
+        networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
             statusCode: .code200,
             httpVersion: .onePointOne,
@@ -23,8 +30,8 @@ final class PSNetworkMockableTests: XCTestCase {
             dataFile: MyDataFile("other.json")
         )
         
-        XCTAssertEqual(networkExchange.response?.statusCode, .code200)
-        XCTAssertEqual(networkExchange.response?.data?.name, "Tiago Ferreira")
+        XCTAssertEqual(networkExchange?.response?.statusCode, .code200)
+        XCTAssertEqual(networkExchange?.response?.data?.name, "Tiago Ferreira")
     }
 }
 
