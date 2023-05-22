@@ -1,6 +1,7 @@
 import Foundation
 
-extension DecodableRequest {
+@available(iOS 13, macOS 10.15, *)
+public extension PSRequest {
     var endpoint: URL {
         var components = URLComponents()
         components.scheme = scheme.rawValue

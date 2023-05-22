@@ -1,11 +1,12 @@
 import Foundation
 
-protocol Mockable {
+@available(iOS 13, macOS 10.15, *)
+public protocol Mockable {
     static func mockNetworkExchange<R: RawRepresentable>(
         request: URLRequest,
-        statusCode: HTTPStatusCode,
-        httpVersion: HTTPVersion,
+        statusCode: PSNetwork.StatusCode,
+        httpVersion: PSNetwork.HTTPVersion,
         header: [String: String],
         dataFile: R?
-    ) -> NetworkExchange where R.RawValue == String
+    ) -> PSNetwork.Mock.NetworkExchange where R.RawValue == String
 }

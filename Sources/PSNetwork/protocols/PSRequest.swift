@@ -1,20 +1,19 @@
 import Foundation
 
-public protocol DecodableRequest {
+@available(iOS 13, macOS 10.15, *)
+public protocol PSRequest: URLRequestConvertible {
     associatedtype ResponseModel: Decodable
-    associatedtype HTTPBody: Encodable = EmptyResponseModel
     associatedtype Encoder: DataEncoder = JSONEncoder
     associatedtype Decoder: DataDecoder = JSONDecoder
 
-    var authorizationType: AuthorizationType { get }
-    var method: HTTPMethod { get }
-    var scheme: NetworkScheme { get }
+    var authorizationType: PSNetwork.AuthorizationType { get }
+    var method: PSNetwork.Method { get }
+    var scheme: PSNetwork.Scheme { get }
     var host: String { get }
     var port: Int? { get }
     var path: [String] { get }
-    var headers: [HTTPHeader] { get }
-    var queryItems: [HTTPQueryItem] { get }
-    var httpBody: HTTPBody { get }
+    var headers: [PSNetwork.Header] { get }
+    var queryItems: [PSNetwork.QueryItem] { get }
     var encoder: Encoder { get }
     var decoder: Decoder { get }
     var timeout: TimeInterval { get }

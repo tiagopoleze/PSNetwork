@@ -1,6 +1,7 @@
 import Foundation
 
-extension DecodableRequest {
+@available(iOS 13, macOS 10.15, *)
+public extension PSRequest {
     func addAuthorizationHeader(to request: inout URLRequest) {
         switch authorizationType.header {
         case nil:
