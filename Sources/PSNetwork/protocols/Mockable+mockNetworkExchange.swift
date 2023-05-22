@@ -14,7 +14,7 @@ public extension Mockable {
             return PSNetwork.Mock.NetworkExchange(
                 urlRequest: request,
                 response: PSNetwork.Mock.ServerResponse(
-                    statusCode: statusCode
+                    statusCode: .code401
                 )
             )
         }
