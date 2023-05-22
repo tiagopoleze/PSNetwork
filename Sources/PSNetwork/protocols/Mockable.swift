@@ -7,6 +7,7 @@ public protocol Mockable {
         statusCode: PSNetwork.StatusCode,
         httpVersion: PSNetwork.HTTPVersion,
         header: [String: String],
+        bundle: Bundle,
         dataFile: R?
     ) -> PSNetwork.Mock.NetworkExchange where R.RawValue == String
 }

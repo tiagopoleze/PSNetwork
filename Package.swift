@@ -8,6 +8,6 @@ let package = Package(
     products: [.library(name: "PSNetwork", targets: ["PSNetwork"])],
     targets: [
         .target(name: "PSNetwork"),
-        .testTarget(name: "PSNetworkTests", dependencies: ["PSNetwork"])
+        .testTarget(name: "PSNetworkTests", dependencies: ["PSNetwork"], resources: [.process("other.json")])
     ]
 )

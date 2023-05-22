@@ -16,7 +16,7 @@ final class PSNetworkTests: XCTestCase {
         PSNetwork.Mock.URLProtocol.mockRequests.insert(networkExchange)
         let expectedResponse = DemoResponse("Some data")
         
-        let networkManager = PSNetwork.NetworkManager(using: URLSession.mock)
+        let networkManager = PSNetwork.Mock.Manager
         let actualResponse = try await networkManager.request(DemoGetRequest())
         XCTAssertEqual(actualResponse, expectedResponse)
     }

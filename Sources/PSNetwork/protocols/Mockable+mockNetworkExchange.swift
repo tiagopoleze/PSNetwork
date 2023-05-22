@@ -19,7 +19,7 @@ public extension Mockable {
             )
         }
 
-        guard let filePath = try? bundle.decode(String.self, from: fileName) else {
+        guard let url = bundle.url(forResource: fileName, withExtension: nil) else {
             return PSNetwork.Mock.NetworkExchange(
                 urlRequest: request,
                 response: PSNetwork.Mock.ServerResponse(
@@ -27,9 +27,14 @@ public extension Mockable {
                 )
             )
         }
-
-        let content = try! String(contentsOfFile: filePath)
-        let data = content.data(using: .utf8)!
+        guard let data = try? Data(contentsOf: url) else {
+            return PSNetwork.Mock.NetworkExchange(
+                urlRequest: request,
+                response: PSNetwork.Mock.ServerResponse(
+                    statusCode: .code403
+                )
+            )
+        }
 
         return PSNetwork.Mock.NetworkExchange(
             urlRequest: request,
