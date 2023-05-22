@@ -41,7 +41,7 @@ struct MyDataFile: MockableData {
 
     let rawValue: String
     let bundle: Bundle = .module
-    var error: PSNetwork.Error? = nil
+    var error: PSNetwork.Error?
 
     init(_ rawValue: String) {
         self.rawValue = rawValue

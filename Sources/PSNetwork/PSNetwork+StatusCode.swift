@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint:disable line_length identifier_name
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork {
     // FONT: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses
@@ -96,3 +97,4 @@ public extension PSNetwork {
         case networkAuthenticationRequired = 511
     }
 }
+// swiftlint:enable line_length identifier_name
