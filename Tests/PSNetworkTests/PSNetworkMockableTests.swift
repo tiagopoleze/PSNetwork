@@ -14,9 +14,7 @@ final class PSNetworkMockableTests: XCTestCase {
         networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
             statusCode: .notFound,
-            httpVersion: .onePointOne,
-            header: [],
-            dataFile: MyDataFile("test")
+            mockData: MyDataFile("test")
         )
         XCTAssertEqual(networkExchange?.response?.statusCode, .notFound)
     }
@@ -25,9 +23,7 @@ final class PSNetworkMockableTests: XCTestCase {
         networkExchange = MyMockable.mockNetworkExchange(
             request: .init(url: URL(string: "https://example.com")!),
             statusCode: .ok,
-            httpVersion: .onePointOne,
-            header: [],
-            dataFile: MyDataFile("other.json")
+            mockData: MyDataFile("other.json")
         )
 
         XCTAssertEqual(networkExchange?.response?.statusCode, .ok)
@@ -40,11 +36,12 @@ struct Other: Codable, Hashable {
     let name: String
 }
 
-struct MyDataFile: DataFile {
+struct MyDataFile: MockableData {
     typealias ReturnType = Other
 
     let rawValue: String
     let bundle: Bundle = .module
+    var error: PSNetwork.Error? = nil
 
     init(_ rawValue: String) {
         self.rawValue = rawValue

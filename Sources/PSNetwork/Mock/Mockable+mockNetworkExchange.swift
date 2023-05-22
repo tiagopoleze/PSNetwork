@@ -2,20 +2,20 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension Mockable {
-    static func mockNetworkExchange<DFile: DataFile>(
+    static func mockNetworkExchange<MockData: MockableData>(
         request: URLRequest,
         statusCode: PSNetwork.StatusCode,
         httpVersion: PSNetwork.HTTPVersion = .onePointOne,
         header: [PSNetwork.Header] = [],
-        dataFile: DFile,
-        error: PSNetwork.Error? = nil
-    ) -> PSNetwork.Mock
-        .NetworkExchange<DFile.ReturnType> where DFile.RawValue == String {
-        guard let encodable = try? dataFile
+        mockData: MockData
+    ) -> PSNetwork
+        .Mock
+        .NetworkExchange<MockData.ReturnType> where MockData.RawValue == String {
+            guard let encodable = try? mockData
             .bundle
             .decode(
-                DFile.ReturnType.self,
-                from: dataFile.rawValue
+                MockData.ReturnType.self,
+                from: mockData.rawValue
             ) else {
             return PSNetwork.Mock.NetworkExchange(
                 urlRequest: request,
@@ -33,7 +33,7 @@ public extension Mockable {
                 data: encodable,
                 headers: header
             ),
-            error: error
+            error: mockData.error
         )
     }
 }
