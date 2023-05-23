@@ -7,7 +7,7 @@ public protocol PSRequest: URLRequestConvertible {
     associatedtype Decoder: DataDecoder = JSONDecoder
 
     var authorizationType: PSNetwork.AuthorizationType { get }
-    var method: PSNetwork.Method { get }
+    var method: PSNetwork.Method { get set }
     var scheme: PSNetwork.Scheme { get }
     var host: String { get }
     var port: Int? { get }
@@ -23,7 +23,6 @@ public protocol PSRequest: URLRequestConvertible {
 @available(iOS 13, macOS 10.15, *)
 public extension PSRequest {
     var scheme: PSNetwork.Scheme { .https }
-    var method: PSNetwork.Method { .get }
     var port: Int? { nil }
     var timeout: TimeInterval { 60 }
     var path: [String] { [] }

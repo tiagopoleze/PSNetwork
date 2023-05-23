@@ -1,3 +1,5 @@
+import Foundation
+
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork {
     enum AuthorizationType {
@@ -5,14 +7,14 @@ public extension PSNetwork {
         case header(PSNetwork.Header)
         case bearer(String)
 
-        internal var header: PSNetwork.Header? {
+        func addAuthorization(to request: inout URLRequest) {
             switch self {
             case .none:
-                return nil
+                break
             case let .header(header):
-                return header
+                request.addValue(header.value, forHTTPHeaderField: header.key)
             case let .bearer(token):
-                return PSNetwork.Header(key: "Authorization", value: "Bearer \(token)")
+                request.addValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
             }
         }
     }

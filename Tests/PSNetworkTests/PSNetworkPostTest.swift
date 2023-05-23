@@ -1,0 +1,52 @@
+//
+//  PSNetworkPostTest.swift
+//  
+//
+//  Created by Tiago Ferreira on 23/05/2023.
+//
+
+import XCTest
+@testable import PSNetwork
+
+final class PSNetworkPostTest: XCTestCase {
+
+    func test_create_PSRequest_call() async throws {
+        let name = "morpheus"
+        let job = "leader"
+        let manager = PSNetwork.NetworkManager()
+        let response = try await manager.request(
+            RegresCreateRequest(
+                body: RegresCreateInputDTO(
+                    name: name,
+                    job: job
+                )
+            )
+        )
+        XCTAssertEqual(response.name, name)
+        XCTAssertEqual(response.job, job)
+    }
+}
+
+struct RegresCreateInputDTO: Encodable {
+    let name: String
+    let job: String
+}
+
+struct RegresCreateOutputDTO: Decodable, Hashable {
+    let name: String
+    let job: String
+    let id: String
+    let createdAt: String
+}
+
+struct RegresCreateRequest: PSRequest {
+    typealias ResponseModel = RegresCreateOutputDTO
+    var authorizationType: PSNetwork.AuthorizationType = .none
+    var host: String = "reqres.in"
+    var path: [String] = ["api", "users"]
+    var method: PSNetwork.Method
+
+    init(body: Encodable) {
+        self.method = .post(body: body)
+    }
+}
