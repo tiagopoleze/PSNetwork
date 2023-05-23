@@ -88,7 +88,7 @@ struct DemoResponse: Codable, Hashable {
 @available(iOS 13, *)
 struct DemoGetRequest: PSRequest {
     typealias ResponseModel = DemoResponse
-    var method: PSNetwork.Method = .get 
+    var method: PSNetwork.Method = .get
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "example.com"
     var timeout: TimeInterval = 0

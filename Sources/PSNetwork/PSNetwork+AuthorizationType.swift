@@ -14,7 +14,7 @@ public extension PSNetwork {
             case let .header(header):
                 request.addValue(header.value, forHTTPHeaderField: header.key)
             case let .bearer(token):
-                request.addValue("Bearer \(token)", forHTTPHeaderField:"Authorization")
+                request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             }
         }
     }

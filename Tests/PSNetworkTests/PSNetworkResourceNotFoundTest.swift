@@ -14,8 +14,7 @@ final class PSNetworkResourceNotFoundTest: XCTestCase {
         let manager = PSNetwork.NetworkManager()
         do {
             _ = try await manager.request(RegresResourceNotFoundRequest())
-        }
-        catch let error as PSNetwork.Error {
+        } catch let error as PSNetwork.Error {
             XCTAssertEqual(PSNetwork.Error.notFound, error)
         } catch {
             XCTFail(error.localizedDescription)
