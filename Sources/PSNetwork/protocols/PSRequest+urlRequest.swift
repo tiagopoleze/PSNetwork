@@ -10,10 +10,10 @@ public extension PSRequest {
         request.httpMethod = method.stringValue
         request.timeoutInterval = timeout
         request.cachePolicy = cachePolicy
-        request.allHTTPHeaderFields = headers.httpHeadersFields
+        headers.add(to: &request)
         authorizationType.addAuthorization(to: &request)
         if let body = try method.body(dataEncoder: encoder) {
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            PSNetwork.Header.contentType().add(to: &request)
             request.httpBody = body
         }
         return request

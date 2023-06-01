@@ -15,6 +15,13 @@ public extension PSNetwork {
 
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork.Header {
+    func add(to request: inout URLRequest) {
+        request.addValue(value, forHTTPHeaderField: key)
+    }
+}
+
+@available(iOS 13, macOS 10.15, *)
+public extension PSNetwork.Header {
     static func acceptLanguage(_ value: String) -> PSNetwork.Header {
         .init(key: "Accept-Language", value: value)
     }
@@ -33,6 +40,11 @@ public extension PSNetwork.Header {
 
     static func cookie(_ value: String) -> PSNetwork.Header {
         .init(key: "Cookie", value: value)
+    }
+
+    @discardableResult
+    static func contentType() -> PSNetwork.Header {
+        .init(key: "Content-Type", value: "application/json")
     }
 
     static func keepAlive(_ value: String) -> PSNetwork.Header {
@@ -54,5 +66,12 @@ extension Array where Element == PSNetwork.Header {
         var dict = [String: String]()
         forEach { dict[$0.key] = $0.value }
         return dict
+    }
+}
+
+@available(iOS 13, macOS 10.15, *)
+extension Array where Element == PSNetwork.Header {
+    func add(to request: inout URLRequest) {
+        forEach { $0.add(to: &request) }
     }
 }
