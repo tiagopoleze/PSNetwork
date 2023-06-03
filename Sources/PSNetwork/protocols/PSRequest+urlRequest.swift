@@ -7,12 +7,13 @@ public extension PSRequest {
             throw PSNetwork.Error.urlRequest
         }
         var request = URLRequest(url: endpoint)
-        request.httpMethod = method.stringValue
+        request.httpMethod = Self.method.stringValue
         request.timeoutInterval = timeout
         request.cachePolicy = cachePolicy
         headers.add(to: &request)
         authorizationType.addAuthorization(to: &request)
-        if let body = try method.body(dataEncoder: encoder) {
+        if let bodyParameter {
+            let body = try encoder.encode(bodyParameter)
             PSNetwork.Header.contentType().add(to: &request)
             request.httpBody = body
         }

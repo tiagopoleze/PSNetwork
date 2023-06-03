@@ -27,12 +27,12 @@ final class PSNetworkPostTest: XCTestCase {
     }
 }
 
-struct RegresCreateInputDTO: Encodable {
+struct RegresCreateInputDTO: Codable {
     let name: String
     let job: String
 }
 
-struct RegresCreateOutputDTO: Decodable, Hashable {
+struct RegresCreateOutputDTO: Codable, Hashable {
     let name: String
     let job: String
     let id: String
@@ -43,10 +43,11 @@ struct RegresCreateRequest: PSRequest {
     typealias ResponseModel = RegresCreateOutputDTO
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    var path: [String] = ["api", "users"]
-    var method: PSNetwork.Method<RegresCreateInputDTO>
+    static var path: [String] = ["api", "users"]
+    static var method: PSNetwork.Method = .post
+    var bodyParameter: RegresCreateInputDTO?
 
     init(body: RegresCreateInputDTO) {
-        self.method = .post(body: body)
+        bodyParameter = body
     }
 }

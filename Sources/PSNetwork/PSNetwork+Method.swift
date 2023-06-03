@@ -2,11 +2,11 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork {
-    enum Method<Body: Encodable> {
+    enum Method {
         case get
-        case post(body: Body)
-        case put(body: Body)
-        case patch(body: Body)
+        case post
+        case put
+        case patch
         case delete
 
         internal var stringValue: String {
@@ -24,17 +24,17 @@ public extension PSNetwork {
             }
         }
 
-        internal func body(dataEncoder: DataEncoder) throws -> Data? {
-            switch self {
-            case .post(let body):
-                return try dataEncoder.encode(body)
-            case .put(let body):
-                return try dataEncoder.encode(body)
-            case .patch(let body):
-                return try dataEncoder.encode(body)
-            case .delete, .get:
-                return nil
-            }
-        }
+//        internal func body(dataEncoder: DataEncoder) throws -> Data? {
+//            switch self {
+//            case .post(let body):
+//                return try dataEncoder.encode(body)
+//            case .put(let body):
+//                return try dataEncoder.encode(body)
+//            case .patch(let body):
+//                return try dataEncoder.encode(body)
+//            case .delete, .get:
+//                return nil
+//            }
+//        }
     }
 }

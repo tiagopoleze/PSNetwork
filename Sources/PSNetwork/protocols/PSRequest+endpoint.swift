@@ -7,7 +7,7 @@ extension PSRequest {
         components.scheme = scheme.rawValue
         components.port = port
         components.host = host
-        if !path.isEmpty { components.path = path.componentPath }
+        if !Self.path.isEmpty { components.path = Self.path.componentPath }
         if !queryItems.isEmpty { components.queryItems = queryItems.urlQueryItems }
         return components.url
     }
