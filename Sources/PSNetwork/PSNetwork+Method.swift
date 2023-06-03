@@ -2,11 +2,11 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork {
-    enum Method {
+    enum Method<Body: Encodable> {
         case get
-        case post(body: Encodable)
-        case put(body: Encodable)
-        case patch(body: Encodable)
+        case post(body: Body)
+        case put(body: Body)
+        case patch(body: Body)
         case delete
 
         internal var stringValue: String {

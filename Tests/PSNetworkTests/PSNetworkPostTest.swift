@@ -44,9 +44,9 @@ struct RegresCreateRequest: PSRequest {
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
     var path: [String] = ["api", "users"]
-    var method: PSNetwork.Method
+    var method: PSNetwork.Method<RegresCreateInputDTO>
 
-    init(body: Encodable) {
+    init(body: RegresCreateInputDTO) {
         self.method = .post(body: body)
     }
 }

@@ -2,12 +2,13 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public protocol PSRequest: URLRequestConvertible {
+    associatedtype BodyParameter: Encodable
     associatedtype ResponseModel: Decodable
     associatedtype Encoder: DataEncoder = JSONEncoder
     associatedtype Decoder: DataDecoder = JSONDecoder
 
     var authorizationType: PSNetwork.AuthorizationType { get }
-    var method: PSNetwork.Method { get set }
+    var method: PSNetwork.Method<BodyParameter> { get set }
     var scheme: PSNetwork.Scheme { get }
     var host: String { get }
     var port: Int? { get }

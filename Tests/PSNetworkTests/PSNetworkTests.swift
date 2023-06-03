@@ -74,7 +74,7 @@ struct RegresRequest: PSRequest {
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
     var path: [String] = ["api", "users", "2"]
-    var method: PSNetwork.Method = .get
+    var method: PSNetwork.Method<EmptyBodyParameter> = .get
 }
 
 struct DemoResponse: Codable, Hashable {
@@ -88,7 +88,7 @@ struct DemoResponse: Codable, Hashable {
 @available(iOS 13, *)
 struct DemoGetRequest: PSRequest {
     typealias ResponseModel = DemoResponse
-    var method: PSNetwork.Method = .get
+    var method: PSNetwork.Method<EmptyBodyParameter> = .get
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "example.com"
     var timeout: TimeInterval = 0

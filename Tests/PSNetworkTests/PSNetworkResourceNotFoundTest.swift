@@ -23,11 +23,12 @@ final class PSNetworkResourceNotFoundTest: XCTestCase {
 }
 
 struct RegresResourceNotFoundRequest: PSRequest {
-    typealias ResponseModel = EmptyResponseType
+    typealias ResponseModel = EmptyResponseModel
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
     var path: [String] = ["api", "unknown", "23"]
-    var method: PSNetwork.Method = .get
+    var method: PSNetwork.Method<EmptyBodyParameter> = .get
 }
 
-struct EmptyResponseType: Decodable { }
+struct EmptyBodyParameter: Encodable { }
+struct EmptyResponseModel: Decodable { }
