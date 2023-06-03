@@ -12,8 +12,7 @@ public extension PSRequest {
         request.cachePolicy = cachePolicy
         headers.add(to: &request)
         authorizationType.addAuthorization(to: &request)
-        if let bodyParameter {
-            let body = try encoder.encode(bodyParameter)
+        if let body = try? encoder.encode(bodyParameter) {
             PSNetwork.Header.contentType().add(to: &request)
             request.httpBody = body
         }
