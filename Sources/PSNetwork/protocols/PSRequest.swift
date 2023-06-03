@@ -2,8 +2,8 @@ import Foundation
 
 @available(iOS 13, macOS 10.15, *)
 public protocol PSRequest: URLRequestConvertible {
-    associatedtype BodyParameter: Encodable
-    associatedtype ResponseModel: Decodable
+    associatedtype BodyParameter: Encodable = EmptyBodyParameter
+    associatedtype ResponseModel: Decodable = EmptyResponseModel
     associatedtype Encoder: DataEncoder = JSONEncoder
     associatedtype Decoder: DataDecoder = JSONDecoder
 
@@ -31,3 +31,6 @@ public extension PSRequest {
     var headers: [PSNetwork.Header] { [] }
     var queryItems: [PSNetwork.QueryItem] { [] }
 }
+
+public struct EmptyBodyParameter: Encodable { }
+public struct EmptyResponseModel: Decodable { }

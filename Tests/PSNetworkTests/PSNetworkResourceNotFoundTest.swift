@@ -29,6 +29,3 @@ struct RegresResourceNotFoundRequest: PSRequest {
     var path: [String] = ["api", "unknown", "23"]
     var method: PSNetwork.Method<EmptyBodyParameter> = .get
 }
-
-struct EmptyBodyParameter: Encodable { }
-struct EmptyResponseModel: Decodable { }

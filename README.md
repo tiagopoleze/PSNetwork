@@ -33,6 +33,7 @@ struct RegresRequest: PSRequest {
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
     var path: [String] = ["api", "users", "2"]
+    var method: PSNetwork.Method<EmptyBodyParameter> = .get
 }
 ```
 
