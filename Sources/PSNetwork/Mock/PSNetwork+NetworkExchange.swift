@@ -4,8 +4,8 @@ import Foundation
 public extension PSNetwork.Mock {
     struct NetworkExchange<T: Hashable>: Hashable {
         let urlRequest: URLRequest
-        let response: ServerResponse<T>?
-        let error: PSNetwork.Error?
+        public let response: ServerResponse<T>?
+        public let error: PSNetwork.Error?
         var urlResponse: HTTPURLResponse? {
             guard let response = response else {
                 return nil
