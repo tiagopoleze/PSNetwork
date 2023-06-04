@@ -3,10 +3,10 @@ import Foundation
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork.Mock {
     struct NetworkExchange<T: Hashable>: Hashable {
-        let urlRequest: URLRequest
+        public let urlRequest: URLRequest
         public let response: ServerResponse<T>?
         public let error: PSNetwork.Error?
-        var urlResponse: HTTPURLResponse? {
+        public var urlResponse: HTTPURLResponse? {
             guard let response = response else {
                 return nil
             }

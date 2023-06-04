@@ -3,10 +3,10 @@ import Foundation
 @available(iOS 13, macOS 10.15, *)
 public extension PSNetwork.Mock {
     struct ServerResponse<T: Hashable>: Hashable {
-        let statusCode: PSNetwork.StatusCode
-        let httpVersion: PSNetwork.HTTPVersion
-        let data: T?
-        let headers: [PSNetwork.Header]
+        public let statusCode: PSNetwork.StatusCode
+        public let httpVersion: PSNetwork.HTTPVersion
+        public let data: T?
+        public let headers: [PSNetwork.Header]
 
         public init(
             statusCode: PSNetwork.StatusCode,
