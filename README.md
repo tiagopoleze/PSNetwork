@@ -30,10 +30,11 @@ Then, create a struct to deal with the request:
 ```Swift
 struct RegresRequest: PSRequest {
     typealias ResponseModel = RegresModel
+    var bodyParameter: EmptyBodyParameter? = nil
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    var path: [String] = ["api", "users", "2"]
-    var method: PSNetwork.Method<EmptyBodyParameter> = .get
+    static var path: [String] = ["api", "users", "2"]
+    static var method: PSNetwork.Method = .get
 }
 ```
 
