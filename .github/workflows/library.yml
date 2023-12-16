@@ -1,0 +1,27 @@
+name: Run Makefile into PSNetwork
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'PSNetwork/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'PSNetwork/**'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        brew install make
+
+    - name: Run Make
+      run: |
+        cd PSNetwork/
+        make all
