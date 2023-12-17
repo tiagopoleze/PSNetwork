@@ -1,0 +1,32 @@
+name: Run Makefile into SharedLibrary
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'PSNetworkSharedLibrary/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'PSNetworkSharedLibrary/**'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Swift
+      uses: fwal/setup-swift@v1
+      with:
+        swift-version: '5.9'
+
+    - name: Install dependencies
+      run: |
+        brew install make
+
+    - name: Run Make
+      run: |
+        cd PSNetwork/
+        make all

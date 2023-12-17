@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Server">
+   </FileRef>
+   <FileRef
       location = "group:PSNetwork">
+   </FileRef>
+   <FileRef
+      location = "group:PSNetworkSharedLibrary">
+   </FileRef>
+   <FileRef
+      location = "group:PSNetworkApp/PSNetworkApp.xcodeproj">
    </FileRef>
 </Workspace>
