@@ -24,9 +24,9 @@ final class PSNetworkResourceNotFoundTest: XCTestCase {
 
 struct RegresResourceNotFoundRequest: PSRequest {
     typealias ResponseModel = EmptyResponseModel
-    var bodyParameter: EmptyBodyParameter? = nil
+    var bodyParameter: EmptyBodyParameter?
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    var path: [String] = ["api", "unknown", "23"]
-    var method: PSNetwork.Method = .get
+    static var path: [String] = ["api", "unknown", "23"]
+    static var method: PSNetwork.Method = .get
 }

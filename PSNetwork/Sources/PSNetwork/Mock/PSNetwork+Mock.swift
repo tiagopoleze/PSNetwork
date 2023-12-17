@@ -1,6 +1,8 @@
-@available(iOS 13, macOS 10.15, tvOS 15, watchOS 7, *)
+/// Extension for mocking PSNetwork functionality.
 public extension PSNetwork {
+    /// Mock implementation for PSNetwork.
     struct Mock {
+        /// The mock network manager instance.
         static var Manager: NetworkManager = .init(using: .mock)
     }
 }

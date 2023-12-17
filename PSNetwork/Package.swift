@@ -5,13 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "PSNetwork",
-    products: [.library(name: "PSNetwork", targets: ["PSNetwork"])],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-http-types.git", from: "1.0.0")
+    platforms: [.iOS(.v13), .macOS(.v10_15), .tvOS(.v15), .watchOS(.v7)],
+    products: [
+        .library(name: "PSNetwork", targets: ["PSNetwork"]),
+        .library(name: "PSNetworkVapor", targets: ["PSNetworkVapor"])
     ],
+    dependencies: [.package(url: "https://github.com/vapor/vapor", from: "4.0.0")],
     targets: [
-        .target(name: "PSNetwork", dependencies: [.product(name: "HTTPTypes", package: "swift-http-types"),
-                                                  .product(name: "HTTPTypesFoundation", package: "swift-http-types")]),
-        .testTarget(name: "PSNetworkTests", dependencies: ["PSNetwork"], resources: [.process("other.json")])
+        .target(name: "PSNetwork"),
+        .target(name: "PSNetworkVapor", dependencies: ["PSNetwork", .product(name: "Vapor", package: "vapor")]),
+        .testTarget(name: "PSNetworkTests", dependencies: ["PSNetwork"], resources: [.process("other.json")]),
+        .testTarget(name: "PSNetworkVaporTests", dependencies: ["PSNetworkVapor"])
     ]
 )

@@ -71,11 +71,11 @@ struct RegresModel: Codable, Hashable {
 @available(iOS 13, *)
 struct RegresRequest: PSRequest {
     typealias ResponseModel = RegresModel
-    var bodyParameter: EmptyBodyParameter? = nil
+    var bodyParameter: EmptyBodyParameter?
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    var path: [String] = ["api", "users", "2"]
-    var method: PSNetwork.Method = .get
+    static var path: [String] = ["api", "users", "2"]
+    static var method: PSNetwork.Method = .get
 }
 
 struct DemoResponse: Codable, Hashable {
@@ -89,9 +89,9 @@ struct DemoResponse: Codable, Hashable {
 @available(iOS 13, *)
 struct DemoGetRequest: PSRequest {
     typealias ResponseModel = DemoResponse
-    var bodyParameter: EmptyBodyParameter? = nil
-    var path: [String] = []
-    var method: PSNetwork.Method = .get
+    var bodyParameter: EmptyBodyParameter?
+    static var path: [String] = []
+    static var method: PSNetwork.Method = .get
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "example.com"
     var timeout: TimeInterval = 0

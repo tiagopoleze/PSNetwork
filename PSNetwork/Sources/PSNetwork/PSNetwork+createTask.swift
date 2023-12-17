@@ -5,7 +5,7 @@ extension PSNetwork {
     static func createTask(
         _ priority: TaskPriority,
         session: URLSession,
-        request: URLRequestConvertible,
+        request: any PSRequest,
         delegate: URLSessionTaskDelegate?
     ) -> Task<(Data, URLResponse), Swift.Error> {
         return Task(priority: priority) {
