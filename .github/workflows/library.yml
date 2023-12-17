@@ -1,14 +1,17 @@
-name: Run Makefile into PSNetwork
+env:
+  name: PSNetwork
+
+name: Run Makefile into $name
 
 on:
   push:
     branches: [ main ]
     paths:
-      - 'PSNetwork/**'
+      - '$name/**'
   pull_request:
     branches: [ main ]
     paths:
-      - 'PSNetwork/**'
+      - '$name/**'
 
 jobs:
   build:
@@ -28,5 +31,5 @@ jobs:
 
     - name: Run Make
       run: |
-        cd PSNetwork/
+        cd $name/
         make all
