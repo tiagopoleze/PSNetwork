@@ -74,8 +74,8 @@ struct RegresRequest: PSRequest {
     var bodyParameter: EmptyBodyParameter? = nil
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    static var path: [String] = ["api", "users", "2"]
-    static var method: PSNetwork.Method = .get
+    var path: [String] = ["api", "users", "2"]
+    var method: PSNetwork.Method = .get
 }
 
 struct DemoResponse: Codable, Hashable {
@@ -90,8 +90,8 @@ struct DemoResponse: Codable, Hashable {
 struct DemoGetRequest: PSRequest {
     typealias ResponseModel = DemoResponse
     var bodyParameter: EmptyBodyParameter? = nil
-    static var path: [String] = []
-    static var method: PSNetwork.Method = .get
+    var path: [String] = []
+    var method: PSNetwork.Method = .get
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "example.com"
     var timeout: TimeInterval = 0

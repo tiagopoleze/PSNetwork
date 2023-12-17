@@ -27,6 +27,6 @@ struct RegresResourceNotFoundRequest: PSRequest {
     var bodyParameter: EmptyBodyParameter? = nil
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    static var path: [String] = ["api", "unknown", "23"]
-    static var method: PSNetwork.Method = .get
+    var path: [String] = ["api", "unknown", "23"]
+    var method: PSNetwork.Method = .get
 }

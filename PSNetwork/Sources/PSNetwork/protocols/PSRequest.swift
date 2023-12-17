@@ -7,8 +7,8 @@ public protocol PSRequest: URLRequestConvertible {
     associatedtype Decoder: DataDecoder = JSONDecoder
 
     var authorizationType: PSNetwork.AuthorizationType { get }
-    static var method: PSNetwork.Method { get set }
-    static var path: [String] { get }
+    var method: PSNetwork.Method { get set }
+    var path: [String] { get }
     var bodyParameter: BodyParameter? { get }
     var scheme: PSNetwork.Scheme { get }
     var host: String { get }

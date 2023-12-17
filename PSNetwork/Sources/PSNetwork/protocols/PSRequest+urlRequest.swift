@@ -7,7 +7,7 @@ public extension PSRequest {
             throw PSNetwork.Error.urlRequest
         }
         var request = URLRequest(url: endpoint)
-        request.httpMethod = Self.method.stringValue
+        request.httpMethod = method.stringValue
         request.timeoutInterval = timeout
         request.cachePolicy = cachePolicy
         headers.add(to: &request)

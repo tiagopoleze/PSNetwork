@@ -43,8 +43,8 @@ struct RegresCreateRequest: PSRequest {
     typealias ResponseModel = RegresCreateOutputDTO
     var authorizationType: PSNetwork.AuthorizationType = .none
     var host: String = "reqres.in"
-    static var path: [String] = ["api", "users"]
-    static var method: PSNetwork.Method = .post
+    var path: [String] = ["api", "users"]
+    var method: PSNetwork.Method = .post
     var bodyParameter: RegresCreateInputDTO?
 
     init(body: RegresCreateInputDTO) {
