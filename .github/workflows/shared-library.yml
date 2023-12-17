@@ -1,17 +1,14 @@
-name: Run Makefile into $name
-
-env:
-  name: PSNetworkSharedLibrary
+name: Run Makefile into PSNetworkSharedLibrary
 
 on:
   push:
     branches: [ main ]
     paths:
-      - '$name/**'
+      - 'PSNetworkSharedLibrary/**'
   pull_request:
     branches: [ main ]
     paths:
-      - '$name/**'
+      - 'PSNetworkSharedLibrary/**'
 
 jobs:
   build:
@@ -31,5 +28,5 @@ jobs:
 
     - name: Run Make
       run: |
-        cd $name/
+        cd PSNetworkSharedLibrary/
         make all

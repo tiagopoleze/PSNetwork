@@ -1,17 +1,14 @@
-name: Run Makefile into $name
-
-env:
-  name: Server
+name: Run Makefile into Server
 
 on:
   push:
     branches: [ main ]
     paths:
-      - '$name/**'
+      - 'Server/**'
   pull_request:
     branches: [ main ]
     paths:
-      - '$name/**'
+      - 'Server/**'
 
 jobs:
   build:
@@ -31,5 +28,5 @@ jobs:
 
     - name: Run Make
       run: |
-        cd $name/
+        cd Server/
         make all
