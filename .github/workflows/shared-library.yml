@@ -1,8 +1,8 @@
-name: Run Makefile into PSNetwork
+name: Run Makefile into PSNetworkSharedLibrary
 
 env:
   SWIFT_VERSION: 5.9
-  PROJECT_NAME: PSNetwork
+  PROJECT_NAME: PSNetworkSharedLibrary
 
 on:
   push:

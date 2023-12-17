@@ -5,19 +5,16 @@ import PackageDescription
 
 let package = Package(
     name: "PSNetwork",
+    platforms: [.iOS(.v13), .macOS(.v10_15), .tvOS(.v15), .watchOS(.v7)],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
-            name: "PSNetwork",
-            targets: ["PSNetwork"]),
+        .library(name: "PSNetwork", targets: ["PSNetwork"]),
+        .library(name: "PSNetworkVapor", targets: ["PSNetworkVapor"])
     ],
+    dependencies: [.package(url: "https://github.com/vapor/vapor", from: "4.0.0")],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
-        .target(
-            name: "PSNetwork"),
-        .testTarget(
-            name: "PSNetworkTests",
-            dependencies: ["PSNetwork"]),
+        .target(name: "PSNetwork"),
+        .target(name: "PSNetworkVapor", dependencies: ["PSNetwork", .product(name: "Vapor", package: "vapor")]),
+        .testTarget(name: "PSNetworkTests", dependencies: ["PSNetwork"], resources: [.process("other.json")]),
+        .testTarget(name: "PSNetworkVaporTests", dependencies: ["PSNetworkVapor"])
     ]
 )
