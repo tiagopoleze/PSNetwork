@@ -54,7 +54,11 @@ struct GetView: View {
             do {
                 if isMocked {
                     let network: PSNetwork.Mock.NetworkExchange<GetOutput>
-                    network = MyMockable.mockNetworkExchange(request: try request.urlRequest(), statusCode: .ok, mockData: GetRequestMocked(rawValue: "get.json"))
+                    network = MyMockable.mockNetworkExchange(
+                        request: try request.urlRequest(),
+                        statusCode: .ok,
+                        mockData: GetRequestMocked(rawValue: "get.json")
+                    )
                     model = network.response?.data
                 } else {
                     model = try await manager.request(request)
@@ -71,7 +75,6 @@ struct GetView_Previews: PreviewProvider {
         GetView()
     }
 }
-
 
 extension GetOutput: Hashable {
     public static func == (lhs: GetOutput, rhs: GetOutput) -> Bool {
