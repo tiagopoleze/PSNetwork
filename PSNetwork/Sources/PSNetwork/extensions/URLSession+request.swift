@@ -1,7 +1,7 @@
 import Foundation
 
-@available(iOS 13, macOS 10.15, tvOS 15, watchOS 7, *)
-extension URLSession {
+@available(iOS 11, macOS 10.13, tvOS 11, watchOS 3, *)
+public extension URLSession {
     @available(iOS, deprecated: 15, message: "Should use `data(for:)` instead")
     @available(macOS, deprecated: 12, message: "Should use `data(for:)` instead")
     func data(from request: URLRequest) async throws -> (Data, URLResponse) {
