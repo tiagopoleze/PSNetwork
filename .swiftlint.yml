@@ -23,7 +23,7 @@ opt_in_rules: # Regras que não estão ativadas por padrão
   - switch_case_on_newline
 
 # Algumas regras de configuração
-line_length: 120
+line_length: 210
 cyclomatic_complexity:
   ignores_case_statements: true
 excluded:

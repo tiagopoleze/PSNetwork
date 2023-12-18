@@ -13,7 +13,7 @@ final class PSNetworkPostTest: XCTestCase {
     func test_create_PSRequest_call() async throws {
         let name = "morpheus"
         let job = "leader"
-        let manager = PSNetwork.NetworkManager()
+        let manager = PSNetwork.Manager()
         let response = try await manager.request(
             RegresCreateRequest(
                 body: RegresCreateInputDTO(

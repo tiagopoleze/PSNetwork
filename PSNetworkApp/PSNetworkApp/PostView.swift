@@ -10,7 +10,7 @@ import PSNetwork
 import PSNetworkSharedLibrary
 
 struct PostView: View {
-    @EnvironmentObject private var manager: PSNetwork.NetworkManager
+    @EnvironmentObject private var manager: PSNetwork.Manager
     @Binding private var text: String
     @State private var postOutput: PostOutput?
     private let isMocked: Bool

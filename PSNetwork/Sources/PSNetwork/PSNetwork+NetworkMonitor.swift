@@ -3,7 +3,7 @@ import Network
 
 @available(iOS 13, macOS 10.15, tvOS 15, watchOS 7, *)
 extension PSNetwork {
-    class NetworkMonitor: ObservableObject {
+    class Monitor: ObservableObject {
         private let monitor = NWPathMonitor()
         private let queue = DispatchQueue(label: "Monitor")
 

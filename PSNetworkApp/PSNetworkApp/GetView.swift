@@ -10,7 +10,7 @@ import PSNetwork
 import PSNetworkSharedLibrary
 
 struct GetView: View {
-    @EnvironmentObject private var manager: PSNetwork.NetworkManager
+    @EnvironmentObject private var manager: PSNetwork.Manager
     @State private var showChangeName = false
     @State private var text: String = ""
     @State private var model: GetOutput?

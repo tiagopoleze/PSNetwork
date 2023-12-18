@@ -10,10 +10,10 @@ import PSNetwork
 
 @main
 struct PSNetworkAppApp: App {
-    @StateObject private var networkManager: PSNetwork.NetworkManager
+    @StateObject private var networkManager: PSNetwork.Manager
     
     init() {
-        _networkManager = StateObject(wrappedValue: PSNetwork.NetworkManager())
+        _networkManager = StateObject(wrappedValue: PSNetwork.Manager())
     }
     
     var body: some Scene {

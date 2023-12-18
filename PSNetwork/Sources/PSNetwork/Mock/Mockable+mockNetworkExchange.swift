@@ -1,4 +1,5 @@
 import Foundation
+import PSCore
 
 public extension Mockable {
     /// A convenience method for creating a mock network exchange with the specified parameters.

@@ -3,7 +3,7 @@ import XCTest
 
 @available(iOS 13, *)
 final class PSNetworkTests: XCTestCase {
-    var manager: PSNetwork.NetworkManager?
+    var manager: PSNetwork.Manager?
 
     override func setUp() {
         manager = .init()

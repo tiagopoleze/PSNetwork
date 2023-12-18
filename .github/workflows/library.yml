@@ -1,18 +1,14 @@
 name: Run Makefile into PSNetwork
 
-env:
-  SWIFT_VERSION: 5.9
-  PROJECT_NAME: PSNetwork
-
 on:
   push:
     branches: [ main ]
     paths:
-      - '$PROJECT_NAME/**'
+      - 'PSNetwork/**'
   pull_request:
     branches: [ main ]
     paths:
-      - '$PROJECT_NAME/**'
+      - 'PSNetwork/**'
 
 jobs:
   build:
@@ -24,7 +20,7 @@ jobs:
     - name: Set up Swift
       uses: fwal/setup-swift@v1
       with:
-        swift-version: '$SWIFT_VERSION'
+        swift-version: '5.9'
 
     - name: Install dependencies
       run: |
@@ -32,5 +28,5 @@ jobs:
 
     - name: Run Make
       run: |
-        cd $PROJECT_NAME/
+        cd PSNetwork/
         make all

@@ -11,7 +11,7 @@ import XCTest
 final class PSNetworkResourceNotFoundTest: XCTestCase {
 
     func test_resource_not_found_call() async {
-        let manager = PSNetwork.NetworkManager()
+        let manager = PSNetwork.Manager()
         do {
             _ = try await manager.request(RegresResourceNotFoundRequest())
         } catch let error as PSNetwork.Error {

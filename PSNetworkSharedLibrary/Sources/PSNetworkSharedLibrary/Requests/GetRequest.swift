@@ -1,7 +1,7 @@
 import PSNetwork
 
 public struct GetRequest: PSRequest {
-    public var bodyParameter: EmptyBodyParameter? = nil
+    public var bodyParameter: EmptyBodyParameter?
     public typealias ResponseModel = GetOutput
     public var authorizationType: PSNetwork.AuthorizationType = .none
     public static var method: PSNetwork.Method = .get
